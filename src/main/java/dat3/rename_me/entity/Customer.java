@@ -22,21 +22,18 @@ public class Customer {
    private String firstName ;
    private String lastName ;
    private  String email;
-
    private String streetName;
-
    private String streetNumber;
-
    private int zipCode;
-
    private String city;
-
    private int phoneNumber;
+   private String password;
+   private String username;
 
 
 
 
-    public Customer(String firstName, String lastName, String email, String streetName, String streetNumber, int zipCode, String city, int phoneNumber) {
+    public Customer(String firstName, String lastName, String email, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +43,9 @@ public class Customer {
         this.zipCode = zipCode;
         this.city = city;
         this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.username = username;
+
     }
 
 

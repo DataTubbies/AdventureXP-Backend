@@ -15,26 +15,20 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Table(name = "companies")
-public class Company {
+public class Company extends Customer {
+
 
     @Id
     private UUID id;
-    private String name;
+    private String companyName;
     private String cvr;
-    private  String streetName;
-    private  String streetNumber;
-    private int zipCode;
-    private String city;
-    private int phoneNumber;
 
 
 
-    public Company(String name, String cvr, int numEmployees, long marketValue) {
+    public Company(String companyName, String firstName,String LastName, String email, String cvr, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
+        super(firstName, LastName, email, streetName, streetNumber, zipCode, city, phoneNumber, username, password);
         this.id = UUID.randomUUID();
-        this.name = name;
+        this.companyName = companyName;
         this.cvr = cvr;
-        this.numEmployees = numEmployees;
-        this.marketValue = marketValue;
-    }
-
+}
 }
