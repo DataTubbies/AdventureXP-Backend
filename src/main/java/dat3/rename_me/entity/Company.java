@@ -1,6 +1,5 @@
 package dat3.rename_me.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -29,12 +28,10 @@ public class Company {
 
 
 
-    public Company(String name, String cvr, int numEmployees, long marketValue) {
+    public Company(String name, String cvr) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.cvr = cvr;
-        this.numEmployees = numEmployees;
-        this.marketValue = marketValue;
     }
 
 }
