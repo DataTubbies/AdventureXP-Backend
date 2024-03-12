@@ -26,11 +26,7 @@ public class BookingService {
     }
 
     public BookingDto getBookingByBookingNumber(int bookingNumber) {
-        /*Booking booking = bookingRepository.findByBookingNumber(bookingNumber).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found"));
-        return new BookingDto(booking, false);
-          */
         return new BookingDto(bookingRepository.findByBookingNumber(bookingNumber).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found")), false);
-
     }
 
     public BookingDto getBookingById(UUID id) {
