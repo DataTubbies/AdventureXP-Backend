@@ -24,7 +24,6 @@ public class Booking {
 
     @Column(nullable =true)
     String companyName;
-    
     String customerFirstName;
     String customerLastName;
     String streetName;
