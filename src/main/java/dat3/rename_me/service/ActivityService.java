@@ -1,9 +1,12 @@
 package dat3.rename_me.service;
 
+import dat3.rename_me.dto.ActivityDto;
+import dat3.rename_me.entity.Activity;
 import dat3.rename_me.repository.ActivityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,11 +19,11 @@ public class ActivityService {
     }
 
     public List<ActivityDto> getAllActivities() {
-        List<ActivityDto> activities = activityRepository.findAll();
-        return activities.stream().map((b)->new ActivityDto(b, false).toList()).collect(Collectors.toList();
+        List<Activity> activities = activityRepository.findAll();
+        return activities.stream().map( a ->new ActivityDto(a,false)).collect(Collectors.toList());
     }
 
-    public ActivityDto getActivityById(int id) {
+    public ActivityDto getActivityById(UUID id) {
         return new ActivityDto(activityRepository.findById(id).orElseThrow(), false);
     }
 }

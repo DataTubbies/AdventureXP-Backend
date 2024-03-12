@@ -1,4 +1,5 @@
 package dat3.rename_me.dto;
+
 import dat3.rename_me.entity.Activity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

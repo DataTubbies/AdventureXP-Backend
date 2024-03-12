@@ -1,5 +1,6 @@
 package dat3.rename_me.api;
 
+import dat3.rename_me.dto.BookingDto;
 import dat3.rename_me.service.BookingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -51,6 +51,6 @@ public BookingDto(Booking b, boolean includeAll) {
         this.city = b.getCity();
         this.created = b.getCreated();
         this.edited = b.getEdited();
+        }
     }
-}
 }
