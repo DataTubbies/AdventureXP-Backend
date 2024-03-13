@@ -19,18 +19,20 @@ public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "VARCHAR(255)")
     private UUID id;
 
     @Column(unique = true)
     private String name;
     private double price;
+    @Column(columnDefinition="MEDIUMBLOB")
     String base64image;
 
     @Column(columnDefinition="TEXT")
     String description;
 
     byte capacity;
-    int ageLimit;
+    byte ageLimit;
     boolean isActive;
     int cancelLimit;
     int timeSpan;

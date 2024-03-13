@@ -22,7 +22,7 @@ public class ActivityDto {
     String base64image;
     String description;
     byte capacity;
-    int ageLimit;
+    byte ageLimit;
     boolean isActive;
     int cancelLimit;
     int timeSpan;
