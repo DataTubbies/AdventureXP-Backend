@@ -15,9 +15,11 @@ import java.time.LocalDateTime;
 
 public class ActivityDto {
 
+    private String id;
     private String name;
     private double price;
     String base64image;
+    String description;
     byte capacity;
     int ageLimit;
     boolean isActive;
@@ -41,4 +43,6 @@ public class ActivityDto {
         }
 
     }
+
+
 }

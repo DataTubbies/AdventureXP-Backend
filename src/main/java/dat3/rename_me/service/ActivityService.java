@@ -3,8 +3,14 @@ package dat3.rename_me.service;
 import dat3.rename_me.dto.ActivityDto;
 import dat3.rename_me.entity.Activity;
 import dat3.rename_me.repository.ActivityRepository;
+import jakarta.persistence.Column;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -26,4 +32,32 @@ public class ActivityService {
     public ActivityDto getActivityById(UUID id) {
         return new ActivityDto(activityRepository.findById(id).orElseThrow(), false);
     }
+
+
+    public ActivityDto addActivity(ActivityDto request) {
+        if (request.getId() != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new recipe");
+        }
+        Activity newActivity = new Activity();
+        updateActivity(newActivity, request);
+        activityRepository.save(newActivity);
+        return new ActivityDto(newActivity,false);
+    }
+
+    private void updateActivity(Activity original, ActivityDto r) {
+        original.setName(r.getName());
+        original.setPrice(r.getPrice());
+        original.setBase64image(r.getBase64image());
+        original.setDescription(r.getDescription());
+        original.setCapacity(r.getCapacity());
+        original.setActive(r.isActive());
+        original.setAgeLimit(r.getAgeLimit());
+        original.setCancelLimit(r.getCancelLimit());
+        original.setTimeSpan(r.getTimeSpan());
+    }
 }
+
+
+
+
+
