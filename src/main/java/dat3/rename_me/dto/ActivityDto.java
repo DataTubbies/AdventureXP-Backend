@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.UUID;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 
 public class ActivityDto {
 
-    private String id;
+    private UUID id;
     private String name;
     private double price;
     String base64image;
@@ -29,6 +30,7 @@ public class ActivityDto {
     private LocalDateTime edited;
 
     public ActivityDto(Activity a, boolean includeAll) {
+        this.id = a.getId();
         this.name = a.getName();
         this.price =a.getPrice();
         this.base64image=a.getBase64image();

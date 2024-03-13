@@ -1,5 +1,6 @@
 package dat3.rename_me.api;
 
+import com.fasterxml.jackson.databind.deser.std.UUIDDeserializer;
 import dat3.rename_me.dto.ActivityDto;
 import dat3.rename_me.entity.Activity;
 import dat3.rename_me.service.ActivityService;
@@ -36,5 +37,16 @@ public class ActivityController {
         return activityService.addActivity(request);
     }
 
+    @PutMapping(path = "/{id}")
+    public ActivityDto addRecipe(@RequestBody ActivityDto request,@PathVariable UUID id) {
+        return activityService.editActivity(request, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity deleteActivity(@PathVariable UUID id) {
+        return activityService.deleteActivity(id);
+    }
+
 
 };
+

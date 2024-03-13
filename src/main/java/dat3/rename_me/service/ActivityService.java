@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,7 +27,7 @@ public class ActivityService {
 
     public List<ActivityDto> getAllActivities() {
         List<Activity> activities = activityRepository.findAll();
-        return activities.stream().map( a ->new ActivityDto(a,false)).collect(Collectors.toList());
+        return activities.stream().map(a -> new ActivityDto(a, false)).collect(Collectors.toList());
     }
 
     public ActivityDto getActivityById(UUID id) {
@@ -41,7 +42,7 @@ public class ActivityService {
         Activity newActivity = new Activity();
         updateActivity(newActivity, request);
         activityRepository.save(newActivity);
-        return new ActivityDto(newActivity,false);
+        return new ActivityDto(newActivity, false);
     }
 
     private void updateActivity(Activity original, ActivityDto r) {
@@ -55,7 +56,26 @@ public class ActivityService {
         original.setCancelLimit(r.getCancelLimit());
         original.setTimeSpan(r.getTimeSpan());
     }
-}
+
+        public ActivityDto editActivity(ActivityDto request, UUID id) {
+        /*if (request.getId() != id) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot change the id of an existing recipe");
+        } */
+        Activity activityToEdit = activityRepository.findById(id).orElseThrow(()
+                -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
+        updateActivity(activityToEdit,request);
+        activityRepository.save(activityToEdit);
+        return new ActivityDto(activityToEdit,false);
+    }
+
+    public ResponseEntity deleteActivity(UUID id) {
+        Activity activity = activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
+        activityRepository.delete(activity);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+};
+
 
 
 
