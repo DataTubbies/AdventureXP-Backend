@@ -34,6 +34,7 @@ public class SetupDevUsers implements ApplicationRunner {
 
     private void setupAllowedRoles(){
         roleRepository.save(new Role("USER"));
+        roleRepository.save(new Role("EMPLOYEE"));
         roleRepository.save(new Role("ADMIN"));
     }
 
@@ -46,6 +47,8 @@ public class SetupDevUsers implements ApplicationRunner {
     private void setupUserWithRoleUsers() {
         Role roleUser = roleRepository.findById("USER").orElseThrow(()-> new NoSuchElementException("Role 'user' not found"));
         Role roleAdmin = roleRepository.findById("ADMIN").orElseThrow(()-> new NoSuchElementException("Role 'admin' not found"));
+        Role roleEmployee = roleRepository.findById("EMPLOYEE").orElseThrow(()-> new NoSuchElementException("Role 'employee' not found"));
+
         System.out.println("******************************************************************************");
         System.out.println("********** IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ************");
         System.out.println();
@@ -55,16 +58,16 @@ public class SetupDevUsers implements ApplicationRunner {
         System.out.println();
         System.out.println("******************************************************************************");
         UserWithRoles user1 = new UserWithRoles("user1", pwEncoder.encode(passwordUsedByAll), "user1@a.dk");
-        UserWithRoles user2 = new UserWithRoles("user2", pwEncoder.encode(passwordUsedByAll), "user2@a.dk");
-        UserWithRoles user3 = new UserWithRoles("user3", pwEncoder.encode(passwordUsedByAll), "user3@a.dk");
-        UserWithRoles user4 = new UserWithRoles("user4", pwEncoder.encode(passwordUsedByAll), "user4@a.dk");
+        UserWithRoles employee1 = new UserWithRoles("employee1", pwEncoder.encode(passwordUsedByAll), "employee1@a.dk");
+        UserWithRoles admin1 = new UserWithRoles("admin1", pwEncoder.encode(passwordUsedByAll), "admin1@a.dk");
+
+        admin1.addRole(roleAdmin);
+        employee1.addRole(roleEmployee);
         user1.addRole(roleUser);
-        user1.addRole(roleAdmin);
-        user2.addRole(roleUser);
-        user3.addRole(roleAdmin);
+        userWithRolesRepository.save(admin1);
+        userWithRolesRepository.save(employee1);
         userWithRolesRepository.save(user1);
-        userWithRolesRepository.save(user2);
-        userWithRolesRepository.save(user3);
-        userWithRolesRepository.save(user4);
+
+
     }
 }
