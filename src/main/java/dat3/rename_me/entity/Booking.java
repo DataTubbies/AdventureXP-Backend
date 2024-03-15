@@ -20,6 +20,7 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "VARCHAR(255)")
     private UUID id;
 
     @Column(nullable =true)

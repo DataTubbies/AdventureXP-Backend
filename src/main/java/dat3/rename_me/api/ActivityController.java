@@ -38,7 +38,7 @@ public class ActivityController {
     }
 
     @PutMapping(path = "/{id}")
-    public ActivityDto addRecipe(@RequestBody ActivityDto request,@PathVariable UUID id) {
+    public ActivityDto addActivity(@RequestBody ActivityDto request,@PathVariable UUID id) {
         return activityService.editActivity(request, id);
     }
 

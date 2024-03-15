@@ -57,6 +57,12 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activities/*")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings/*")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers/*")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("EMPLOYEE")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("ADMIN")
+
+
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/customers")).permitAll()
 
 
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/auth/login")).permitAll()
@@ -84,6 +90,7 @@ public class SecurityConfig {
 
             //This is for demo purposes only, and should be removed for a real system
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
+            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/employee-only")).hasAuthority("EMPLOYEE")
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)

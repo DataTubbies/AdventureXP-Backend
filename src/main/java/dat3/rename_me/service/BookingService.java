@@ -32,4 +32,8 @@ public class BookingService {
     public BookingDto getBookingById(UUID id) {
         return new BookingDto(bookingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found")), false);
     }
+
+    public Object getBookingsByUserId(UUID id) {
+        return bookingRepository.findById(id);
+    }
 }

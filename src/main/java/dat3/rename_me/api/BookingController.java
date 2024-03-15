@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import javax.servlet.http.HttpServletResponse;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -16,9 +19,24 @@ public class BookingController {
 
     private BookingService bookingService;
 
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
     @GetMapping
-    public List<BookingDto> getAllBookings() {
-        return bookingService.getAllBookings();
+    public Object getAllBookings(Authentication authentication) {
+        if (authentication.getAuthorities().toString().contains("ADMIN") || authentication.getAuthorities().toString().contains("EMPLOYEE")) {
+            return bookingService.getAllBookings();
+        } else if (authentication.getAuthorities().toString().contains("USER")) {
+            // Extract bookings based on user information from authentication object
+            String userName = authentication.getName();
+
+            // Assuming you have a method in bookingService to get bookings by user
+            UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
+            return bookingService.getBookingsByUserId(userId);
+        } else {
+            return "Unauthorized access";
+        }
     }
 
     @GetMapping(path = "/{id}")

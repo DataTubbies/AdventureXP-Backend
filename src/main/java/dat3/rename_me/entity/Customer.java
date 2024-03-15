@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Setter
@@ -12,40 +14,51 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Table(name = "customers")
-
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-   private UUID id;
+    @Column(columnDefinition = "VARCHAR(255)")
+    private UUID id;
+
+    @Column(nullable = true)
+    private String companyName;
+    @Column(nullable = true)
+    private int cvr;
+
+
+    private boolean isCompany;
    private String firstName ;
    private String lastName ;
-   private  String email;
+   private String email;
    private String streetName;
    private String streetNumber;
    private int zipCode;
    private String city;
    private int phoneNumber;
-   private String password;
    private String username;
+   @Transient
+   private String password;
+
+    private LocalDateTime created;
+    private LocalDateTime edited;
 
 
-
-
-    public Customer(String firstName, String lastName, String email, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
+    public Customer(String companyName, boolean isCompany, String firstName,String LastName, String email, int cvr, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
         this.id = UUID.randomUUID();
+        this.companyName = companyName;
+        this.cvr = cvr;
+        this.isCompany = isCompany;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.lastName = LastName;
         this.email = email;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.zipCode = zipCode;
         this.city = city;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.username = username;
-
+        this.password = password;
     }
-
 
 }
