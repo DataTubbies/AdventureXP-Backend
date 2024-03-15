@@ -2,6 +2,8 @@ package dat3.rename_me.api;
 
 import dat3.rename_me.dto.CustomerDto;
 import dat3.rename_me.service.CustomerService;
+import dat3.security.dto.UserWithRolesRequest;
+import dat3.security.service.UserWithRolesService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,10 @@ public class CustomerController {
 
         private CustomerService customerService;
 
-        public CustomerController(CustomerService customerService) {
+        private UserWithRolesService userWithRolesService;
+
+        public CustomerController(CustomerService customerService, UserWithRolesService userWithRolesService) {
+            this.userWithRolesService = userWithRolesService;
             this.customerService = customerService;
         }
 
@@ -40,6 +45,15 @@ public class CustomerController {
 
         @PostMapping
         public CustomerDto createCustomer(@RequestBody CustomerDto requestBody) {
+            System.out.print("THIS IS WHAT I AM SEEING: " + requestBody);
+            // Create a user with roles
+            //UserWithRolesRequest request = new UserWithRolesRequest();
+            //request.setUsername(requestBody.getUsername());
+            //request.setPassword(requestBody.getPassword());
+            //request.setEmail(requestBody.getEmail());
+            //userWithRolesService.addUserWithRoles(request);
+
+            // Create a customer
             return customerService.addCustomer(requestBody);
         }
 }

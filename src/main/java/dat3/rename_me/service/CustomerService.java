@@ -27,7 +27,7 @@ public class CustomerService {
     RoleRepository roleRepository;
     UserWithRolesRepository userWithRolesRepository;
 
-    private CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository, PasswordEncoder pwEncoder, RoleRepository roleRepository, UserWithRolesRepository userWithRolesRepository) {
         this.customerRepository = customerRepository;
@@ -51,10 +51,6 @@ public class CustomerService {
         //Role roleUser = roleRepository.findById("USER").orElseThrow(()-> new NoSuchElementException("Role 'user' not found"));
         Customer newCustomer = new Customer();
         updateCustomer(newCustomer, c);
-        System.out.println("Customer: " + newCustomer.getId() + newCustomer.getCity() + newCustomer.getCompanyName() + newCustomer.getCvr() + newCustomer.getEmail() + newCustomer.getFirstName() + newCustomer.getLastName() + newCustomer.getPhoneNumber() + newCustomer.getStreetName() + newCustomer.getStreetNumber() + newCustomer.getZipCode() + newCustomer.getUsername() + newCustomer.getPassword());
-        //UserWithRoles user = new UserWithRoles(customer.getUsername(), pwEncoder.encode(customer.getPassword()), customer.getEmail());
-        //user.addRole(roleUser);
-        //userWithRolesRepository.save(user);
         customerRepository.save(newCustomer);
         return new CustomerDto(newCustomer, false);
     }
