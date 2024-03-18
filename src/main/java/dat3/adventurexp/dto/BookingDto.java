@@ -1,12 +1,14 @@
-package dat3.rename_me.dto;
+package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import dat3.rename_me.entity.Booking;
+import dat3.adventurexp.entity.Booking;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import dat3.adventurexp.entity.Customer;
+import dat3.adventurexp.entity.Activity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -27,7 +29,11 @@ public class BookingDto {
     String city;
     int phoneNumber;
     int bookingNumber;
-    String activity;
+
+    Activity activity;
+
+    Customer customer;
+
 
     @CreationTimestamp
     private LocalDateTime created;

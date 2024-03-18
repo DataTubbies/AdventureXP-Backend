@@ -1,4 +1,4 @@
-package dat3.rename_me.entity;
+package dat3.adventurexp.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,19 +18,21 @@ import java.util.UUID;
 public class Activity {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    //@Column(columnDefinition = "VARCHAR(255)")
     private UUID id;
 
     @Column(unique = true)
     private String name;
     private double price;
+    @Column(columnDefinition="MEDIUMBLOB")
     String base64image;
 
     @Column(columnDefinition="TEXT")
     String description;
 
     byte capacity;
-    int ageLimit;
+    byte ageLimit;
     boolean isActive;
     int cancelLimit;
     int timeSpan;

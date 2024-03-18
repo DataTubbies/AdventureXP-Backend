@@ -1,4 +1,4 @@
-package dat3.rename_me.entity;
+package dat3.adventurexp.entity;
 
 
 import jakarta.persistence.*;
@@ -19,7 +19,8 @@ import java.util.UUID;
 public class Booking {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    //@Column(columnDefinition = "VARCHAR(255)")
     private UUID id;
 
     @Column(nullable =true)
@@ -32,7 +33,14 @@ public class Booking {
     String city;
     int phoneNumber;
     int bookingNumber;
-    String activity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "activity_name", referencedColumnName = "name")
+    Activity activity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_username", referencedColumnName = "username")
+    Customer customer;
 
     @CreationTimestamp
     private LocalDateTime created;

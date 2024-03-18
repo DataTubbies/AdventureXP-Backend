@@ -1,10 +1,11 @@
-package dat3.rename_me.dto;
+package dat3.adventurexp.dto;
 
-import dat3.rename_me.entity.Activity;
+import dat3.adventurexp.entity.Activity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.UUID;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +16,13 @@ import java.time.LocalDateTime;
 
 public class ActivityDto {
 
+    private UUID id;
     private String name;
     private double price;
     String base64image;
+    String description;
     byte capacity;
-    int ageLimit;
+    byte ageLimit;
     boolean isActive;
     int cancelLimit;
     int timeSpan;
@@ -27,6 +30,7 @@ public class ActivityDto {
     private LocalDateTime edited;
 
     public ActivityDto(Activity a, boolean includeAll) {
+        this.id = a.getId();
         this.name = a.getName();
         this.price =a.getPrice();
         this.base64image=a.getBase64image();
@@ -41,4 +45,6 @@ public class ActivityDto {
         }
 
     }
+
+
 }

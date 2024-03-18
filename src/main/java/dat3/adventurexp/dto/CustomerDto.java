@@ -1,7 +1,7 @@
-package dat3.rename_me.dto;
+package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import dat3.rename_me.entity.Company;
+import dat3.adventurexp.entity.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,10 +14,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-public class CompanyDto {
+public class CustomerDto {
     private UUID id;
     private String companyName;
-    private String cvr;
+    private int cvr;
+    private boolean isCompany;
     private String firstName ;
     private String lastName ;
     private  String email;
@@ -26,31 +27,31 @@ public class CompanyDto {
     private int zipCode;
     private String city;
     private int phoneNumber;
-    private String password;
     private String username;
+    private String password;
     private LocalDateTime created;
     private LocalDateTime edited;
 
 
-    public CompanyDto(Company c, boolean includeAll) {
+    public CustomerDto(Customer c, boolean includeAll) {
         this.id = c.getId();
         this.companyName = c.getCompanyName();
+        this.cvr = c.getCvr();
+        this.isCompany = c.isCompany();
         this.phoneNumber =c.getPhoneNumber();
         this.firstName = c.getFirstName();
         this.lastName =c.getLastName();
         if(includeAll){
-          
+
             this.email =c.getEmail();
             this.created = c.getCreated();
             this.edited = c.getEdited();
-            this.cvr = c.getCvr();
             this.streetName =c.getStreetName();
             this.streetNumber =c.getStreetNumber();
             this.zipCode =c.getZipCode();
             this.city =c.getCity();
-            this.password = c.getPassword();
             this.username =c.getUsername();
-
+            this.password =c.getPassword();
         }
     }
 }

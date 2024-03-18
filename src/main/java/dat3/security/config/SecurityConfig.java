@@ -57,13 +57,19 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activities/*")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings/*")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers/*")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("EMPLOYEE")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("ADMIN")
+
+
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/customers")).permitAll()
 
 
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/auth/login")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/user-with-role")).permitAll() //Clients can create a user for themself
 
             //This is for demo purposes only, and should be removed for a real system
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/demo/anonymous")).permitAll()
+            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/demo/anonymous")).permitAll()
 
             //Allow index.html for anonymous users
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/index.html")).permitAll()
@@ -74,11 +80,17 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/swagger-resources/**")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/v3/api-docs/**")).permitAll()
 
+            // Allow admin to post, put and delete  activities
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/activities")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT,"/activities")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE,"/activities")).hasAuthority("ADMIN")
+
             //Required for error responses
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
 
             //This is for demo purposes only, and should be removed for a real system
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
+            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/employee-only")).hasAuthority("EMPLOYEE")
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)

@@ -55,8 +55,9 @@ class UserWithRolesServiceTest {
   @Test
   void getUserWithRoles() {
     UserWithRolesResponse user = userWithRolesService.getUserWithRoles("u1");
-    assertEquals(2, user.getRoleNames().size());
+    assertEquals(3, user.getRoleNames().size());
     assertTrue(user.getRoleNames().contains("USER"));
+    assertTrue(user.getRoleNames().contains("EMPLOYEE"));
     assertTrue(user.getRoleNames().contains("ADMIN"));
   }
 

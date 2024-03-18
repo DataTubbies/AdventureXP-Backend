@@ -1,0 +1,46 @@
+package dat3.adventurexp.api;
+
+import dat3.adventurexp.dto.BookingDto;
+import dat3.adventurexp.service.BookingService;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/bookings")
+public class BookingController {
+
+    private BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
+    @GetMapping
+    public Object getAllBookings(Authentication authentication) {
+        if (authentication.getAuthorities().toString().contains("ADMIN") || authentication.getAuthorities().toString().contains("EMPLOYEE")) {
+            return bookingService.getAllBookings();
+        } else if (authentication.getAuthorities().toString().contains("USER")) {
+            // Extract bookings based on user information from authentication object
+            String username = authentication.getName();
+
+            // Assuming you have a method in bookingService to get bookings by user
+            //UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
+            return bookingService.getBookingsByUser(username);
+        } else {
+            return "Unauthorized access";
+        }
+    }
+
+    @GetMapping(path = "/{id}")
+    public BookingDto getBookingById(@PathVariable UUID id) {
+        return bookingService.getBookingById(id);
+    }
+
+    @PostMapping
+    public BookingDto createBooking(@RequestBody BookingDto requestBody) {
+        return bookingService.addBooking(requestBody);
+    }
+}
