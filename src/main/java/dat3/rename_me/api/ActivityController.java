@@ -1,10 +1,7 @@
 package dat3.rename_me.api;
 
-import com.fasterxml.jackson.databind.deser.std.UUIDDeserializer;
 import dat3.rename_me.dto.ActivityDto;
-import dat3.rename_me.entity.Activity;
 import dat3.rename_me.service.ActivityService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

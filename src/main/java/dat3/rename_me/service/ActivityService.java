@@ -3,15 +3,11 @@ package dat3.rename_me.service;
 import dat3.rename_me.dto.ActivityDto;
 import dat3.rename_me.entity.Activity;
 import dat3.rename_me.repository.ActivityRepository;
-import jakarta.persistence.Column;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -37,7 +33,7 @@ public class ActivityService {
 
     public ActivityDto addActivity(ActivityDto request) {
         if (request.getId() != null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new recipe");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new activity");
         }
         Activity newActivity = new Activity();
         updateActivity(newActivity, request);
