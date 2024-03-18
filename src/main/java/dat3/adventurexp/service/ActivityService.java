@@ -1,8 +1,8 @@
-package dat3.rename_me.service;
+package dat3.adventurexp.service;
 
-import dat3.rename_me.dto.ActivityDto;
-import dat3.rename_me.entity.Activity;
-import dat3.rename_me.repository.ActivityRepository;
+import dat3.adventurexp.dto.ActivityDto;
+import dat3.adventurexp.entity.Activity;
+import dat3.adventurexp.repository.ActivityRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

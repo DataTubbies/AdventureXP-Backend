@@ -1,13 +1,11 @@
-package dat3.rename_me.api;
+package dat3.adventurexp.api;
 
-import dat3.rename_me.dto.BookingDto;
-import dat3.rename_me.service.BookingService;
+import dat3.adventurexp.dto.BookingDto;
+import dat3.adventurexp.service.BookingService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
-import javax.servlet.http.HttpServletResponse;
 
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController

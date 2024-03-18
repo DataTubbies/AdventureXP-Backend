@@ -1,6 +1,6 @@
-package dat3.rename_me.repository;
+package dat3.adventurexp.repository;
 
-import dat3.rename_me.entity.Customer;
+import dat3.adventurexp.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
