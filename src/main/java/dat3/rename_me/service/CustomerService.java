@@ -47,8 +47,6 @@ public class CustomerService {
 
 
     public CustomerDto addCustomer(CustomerDto c) {
-        //roleRepository.save(new Role("USER"));
-        //Role roleUser = roleRepository.findById("USER").orElseThrow(()-> new NoSuchElementException("Role 'user' not found"));
         Customer newCustomer = new Customer();
         updateCustomer(newCustomer, c);
         customerRepository.save(newCustomer);
