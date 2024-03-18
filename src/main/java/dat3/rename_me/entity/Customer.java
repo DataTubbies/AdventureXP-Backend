@@ -26,7 +26,6 @@ public class Customer {
     @Column(nullable = true)
     private int cvr;
 
-
     private boolean isCompany;
    private String firstName ;
    private String lastName ;
