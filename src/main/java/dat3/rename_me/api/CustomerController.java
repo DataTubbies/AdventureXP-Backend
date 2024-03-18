@@ -47,11 +47,11 @@ public class CustomerController {
         public CustomerDto createCustomer(@RequestBody CustomerDto requestBody) {
             System.out.print("THIS IS WHAT I AM SEEING: " + requestBody);
             // Create a user with roles
-            //UserWithRolesRequest request = new UserWithRolesRequest();
-            //request.setUsername(requestBody.getUsername());
-            //request.setPassword(requestBody.getPassword());
-            //request.setEmail(requestBody.getEmail());
-            //userWithRolesService.addUserWithRoles(request);
+            UserWithRolesRequest request = new UserWithRolesRequest();
+            request.setUsername(requestBody.getUsername());
+            request.setPassword(requestBody.getPassword());
+            request.setEmail(requestBody.getEmail());
+            userWithRolesService.addUserWithRoles(request);
 
             // Create a customer
             return customerService.addCustomer(requestBody);
