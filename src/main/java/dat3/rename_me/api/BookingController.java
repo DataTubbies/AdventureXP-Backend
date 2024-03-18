@@ -2,10 +2,7 @@ package dat3.rename_me.api;
 
 import dat3.rename_me.dto.BookingDto;
 import dat3.rename_me.service.BookingService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,11 +26,11 @@ public class BookingController {
             return bookingService.getAllBookings();
         } else if (authentication.getAuthorities().toString().contains("USER")) {
             // Extract bookings based on user information from authentication object
-            String userName = authentication.getName();
+            String username = authentication.getName();
 
             // Assuming you have a method in bookingService to get bookings by user
-            UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
-            return bookingService.getBookingsByUserId(userId);
+            //UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
+            return bookingService.getBookingsByUser(username);
         } else {
             return "Unauthorized access";
         }
@@ -42,5 +39,10 @@ public class BookingController {
     @GetMapping(path = "/{id}")
     public BookingDto getBookingById(@PathVariable UUID id) {
         return bookingService.getBookingById(id);
+    }
+
+    @PostMapping
+    public BookingDto createBooking(@RequestBody BookingDto requestBody) {
+        return bookingService.addBooking(requestBody);
     }
 }

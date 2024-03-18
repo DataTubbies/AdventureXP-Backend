@@ -20,7 +20,7 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "VARCHAR(255)")
+    //@Column(columnDefinition = "VARCHAR(255)")
     private UUID id;
 
     @Column(nullable =true)
@@ -34,6 +34,10 @@ public class Booking {
     int phoneNumber;
     int bookingNumber;
     String activity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_username", referencedColumnName = "username")
+    Customer customer;
 
     @CreationTimestamp
     private LocalDateTime created;
