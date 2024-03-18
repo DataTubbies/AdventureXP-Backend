@@ -33,7 +33,10 @@ public class Booking {
     String city;
     int phoneNumber;
     int bookingNumber;
-    String activity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "activity_name", referencedColumnName = "name")
+    Activity activity;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_username", referencedColumnName = "username")
