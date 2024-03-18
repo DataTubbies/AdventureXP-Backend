@@ -1,12 +1,8 @@
-package dat3.rename_me.service;
+package dat3.adventurexp.service;
 
-import dat3.rename_me.dto.ActivityDto;
-import dat3.rename_me.dto.CustomerDto;
-import dat3.rename_me.entity.Activity;
-import dat3.rename_me.entity.Customer;
-import dat3.rename_me.repository.CustomerRepository;
-import dat3.security.entity.Role;
-import dat3.security.entity.UserWithRoles;
+import dat3.adventurexp.dto.CustomerDto;
+import dat3.adventurexp.entity.Customer;
+import dat3.adventurexp.repository.CustomerRepository;
 import dat3.security.repository.RoleRepository;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.http.HttpStatus;
@@ -16,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

@@ -1,10 +1,8 @@
-package dat3.rename_me.service;
+package dat3.adventurexp.service;
 
-import dat3.rename_me.dto.ActivityDto;
-import dat3.rename_me.dto.BookingDto;
-import dat3.rename_me.entity.Activity;
-import dat3.rename_me.entity.Booking;
-import dat3.rename_me.repository.BookingRepository;
+import dat3.adventurexp.dto.BookingDto;
+import dat3.adventurexp.entity.Booking;
+import dat3.adventurexp.repository.BookingRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

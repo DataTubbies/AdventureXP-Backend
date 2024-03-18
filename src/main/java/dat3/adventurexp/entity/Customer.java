@@ -1,4 +1,4 @@
-package dat3.rename_me.entity;
+package dat3.adventurexp.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -43,8 +43,8 @@ public class Customer {
     private LocalDateTime edited;
 
 
-    public Customer(String companyName, boolean isCompany, String firstName,String LastName, String email, int cvr, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
-        this.id = UUID.randomUUID();
+    public Customer(UUID id, String companyName, boolean isCompany, String firstName,String LastName, String email, int cvr, String streetName, String streetNumber, int zipCode, String city, int phoneNumber, String username, String password) {
+        this.id = id;
         this.companyName = companyName;
         this.cvr = cvr;
         this.isCompany = isCompany;

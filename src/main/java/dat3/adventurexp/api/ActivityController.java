@@ -1,7 +1,7 @@
-package dat3.rename_me.api;
+package dat3.adventurexp.api;
 
-import dat3.rename_me.dto.ActivityDto;
-import dat3.rename_me.service.ActivityService;
+import dat3.adventurexp.dto.ActivityDto;
+import dat3.adventurexp.service.ActivityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

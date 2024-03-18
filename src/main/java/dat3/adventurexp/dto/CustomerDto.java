@@ -1,7 +1,7 @@
-package dat3.rename_me.dto;
+package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import dat3.rename_me.entity.Customer;
+import dat3.adventurexp.entity.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

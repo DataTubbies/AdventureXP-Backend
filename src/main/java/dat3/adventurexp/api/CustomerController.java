@@ -1,7 +1,7 @@
-package dat3.rename_me.api;
+package dat3.adventurexp.api;
 
-import dat3.rename_me.dto.CustomerDto;
-import dat3.rename_me.service.CustomerService;
+import dat3.adventurexp.dto.CustomerDto;
+import dat3.adventurexp.service.CustomerService;
 import dat3.security.dto.UserWithRolesRequest;
 import dat3.security.service.UserWithRolesService;
 import org.springframework.security.core.Authentication;
