@@ -82,8 +82,8 @@ public class SecurityConfig {
 
             // Allow admin to post, put and delete  activities
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/activities")).hasAuthority("ADMIN")
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT,"/activities")).hasAuthority("ADMIN")
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE,"/activities")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT,"/activities/**")).hasAuthority("ADMIN")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE,"/activities/**")).hasAuthority("ADMIN")
 
             //Required for error responses
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()

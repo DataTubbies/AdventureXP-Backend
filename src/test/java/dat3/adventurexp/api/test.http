@@ -1,0 +1,15 @@
+POST http://localhost:9003/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "test12"
+}
+
+###
+GET http://localhost:9002/activities
+Accept: application/json
+Authorization: Bearer <token>
+
+
+

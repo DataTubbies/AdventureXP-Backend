@@ -1,5 +1,6 @@
 package dat3.adventurexp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -36,6 +39,10 @@ public class Activity {
     boolean isActive;
     int cancelLimit;
     int timeSpan;
+
+    @OneToMany(mappedBy = "activity")
+    @JsonBackReference
+    private Set<Booking> booking = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime created;

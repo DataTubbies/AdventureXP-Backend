@@ -29,7 +29,7 @@ public class ActivityController {
     }
 
 
-    @PostMapping("/add")
+    @PostMapping
     public ActivityDto addActivity(@RequestBody ActivityDto request) {
         return activityService.addActivity(request);
     }
