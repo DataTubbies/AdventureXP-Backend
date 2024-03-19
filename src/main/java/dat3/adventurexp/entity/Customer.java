@@ -1,5 +1,6 @@
 package dat3.adventurexp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Setter
@@ -38,6 +41,10 @@ public class Customer {
    private String username;
    @Transient
    private String password;
+
+   @OneToMany(mappedBy = "customer")
+   @JsonBackReference
+   private Set<Booking> booking = new HashSet<>();
 
     private LocalDateTime created;
     private LocalDateTime edited;
