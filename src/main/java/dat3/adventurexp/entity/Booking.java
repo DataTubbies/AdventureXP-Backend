@@ -34,12 +34,12 @@ public class Booking {
     int phoneNumber;
     int bookingNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "activity_name", referencedColumnName = "name")
+    @ManyToOne
+    @JoinColumn(name = "activity_id", referencedColumnName = "id")
     Activity activity;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_username", referencedColumnName = "username")
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     Customer customer;
 
     @CreationTimestamp
