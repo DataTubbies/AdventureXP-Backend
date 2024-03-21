@@ -20,6 +20,7 @@ import java.util.UUID;
 @Table(name = "activities")
 public class Activity {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     //@Column(columnDefinition = "VARCHAR(255)")

@@ -1,11 +1,15 @@
 package dat3.adventurexp.api;
 
 import dat3.adventurexp.dto.BookingDto;
+import dat3.adventurexp.entity.Booking;
 import dat3.adventurexp.service.BookingService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,20 +23,26 @@ public class BookingController {
     }
 
     @GetMapping
-    public Object getAllBookings(Authentication authentication) {
-        if (authentication.getAuthorities().toString().contains("ADMIN") || authentication.getAuthorities().toString().contains("EMPLOYEE")) {
+    public List<BookingDto> getAllBookings() {
             return bookingService.getAllBookings();
-        } else if (authentication.getAuthorities().toString().contains("USER")) {
+
             // Extract bookings based on user information from authentication object
-            String username = authentication.getName();
+
 
             // Assuming you have a method in bookingService to get bookings by user
             //UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
-            return bookingService.getBookingsByUser(username);
-        } else {
-            return "Unauthorized access";
-        }
+            // return bookingService.getBookingsByUser(username);
+
+
     }
+    @GetMapping("/bookings/customer")
+    public ResponseEntity<List<BookingDto>> getBookingsByCustomerId(Authentication authentication) {
+
+        String username = authentication.getName();
+        List<BookingDto> bookings = bookingService.getBookingsByUser(username);
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+
 
     @GetMapping(path = "/{id}")
     public BookingDto getBookingById(@PathVariable UUID id) {

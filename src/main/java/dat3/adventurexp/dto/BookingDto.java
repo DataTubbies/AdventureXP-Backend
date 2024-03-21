@@ -2,6 +2,7 @@ package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.adventurexp.entity.Booking;
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,14 +21,11 @@ import java.util.UUID;
 public class BookingDto {
 
     private UUID id;
-    String companyName;
-    String customerFirstName;
-    String customerLastName;
-    String streetName;
-    String streetNumber;
-    int zipCode;
-    String city;
-    int phoneNumber;
+    private UUID activityId;
+
+    private UUID customerId;
+
+
     int bookingNumber;
 
     Activity activity;
@@ -43,20 +41,15 @@ public class BookingDto {
 
 public BookingDto(Booking b, boolean includeAll) {
     this.id = b.getId();
-    this.companyName = b.getCompanyName();
-    this.bookingNumber = b.getBookingNumber();
-    this.customerFirstName = b.getCustomerFirstName();
-    this.customerLastName = b.getCustomerLastName();
-    this.phoneNumber = b.getPhoneNumber();
     this.activity = b.getActivity();
+    this.customer = b.getCustomer();
+    this.activityId = b.getActivity().getId();
+    this.customerId =b.getCustomer().getId();
 
     if(includeAll){
-        this.streetName = b.getStreetName();
-        this.streetNumber = b.getStreetNumber();
-        this.zipCode = b.getZipCode();
-        this.city = b.getCity();
         this.created = b.getCreated();
         this.edited = b.getEdited();
+        this.bookingNumber = b.getBookingNumber();
         }
     }
 }

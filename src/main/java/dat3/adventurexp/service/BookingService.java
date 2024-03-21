@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class BookingService {
         return new BookingDto(bookingRepository.findByBookingNumber(bookingNumber).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found")), false);
     }
 
-    public Object getBookingsByUser(String username) {
+    public List<BookingDto> getBookingsByUser(String username) {
         List<Booking> bookings = bookingRepository.findByCustomerUsername(username);
         return bookings.stream().map((b)->new BookingDto(b, false)).collect(Collectors.toList());
     }
@@ -38,20 +39,9 @@ public class BookingService {
         return new BookingDto(bookingRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found")), false);
     }
 
-    public Object getBookingsByUserId(UUID id) {
-        return bookingRepository.findById(id);
-    }
 
     private void updateBooking(Booking original, BookingDto r) {
-        original.setCompanyName(r.getCompanyName());
-        original.setCustomerFirstName(r.getCustomerFirstName());
-        original.setCustomerLastName(r.getCustomerLastName());
         original.setCustomer(r.getCustomer());
-        original.setStreetName(r.getStreetName());
-        original.setStreetNumber(r.getStreetNumber());
-        original.setZipCode(r.getZipCode());
-        original.setCity(r.getCity());
-        original.setPhoneNumber(r.getPhoneNumber());
         original.setBookingNumber(r.getBookingNumber());
         original.setActivity(r.getActivity());
     }
@@ -61,5 +51,10 @@ public class BookingService {
         updateBooking(booking, bookingDto);
         bookingRepository.save(booking);
         return new BookingDto(booking, false);
+    }
+
+    public List<Booking> getBookingsByCustomerId(UUID customerId) {
+        // Call the repository method to fetch bookings by customer ID
+        return bookingRepository.findByCustomerId(customerId);
     }
 }

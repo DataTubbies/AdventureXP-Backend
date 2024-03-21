@@ -58,7 +58,6 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings/*")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers/*")).permitAll()
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("EMPLOYEE")
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("ADMIN")
 
 

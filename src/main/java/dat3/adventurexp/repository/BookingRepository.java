@@ -12,4 +12,7 @@ public interface BookingRepository extends JpaRepository<Booking, UUID>{
     Optional<Booking> findByBookingNumber(int bookingNumber);
     List<Booking> findByCustomerUsername(String username);
     //Optional<Booking> findByName(String name);
-}
+
+    List<Booking> findByCustomerId(UUID customerId);
+    }
+

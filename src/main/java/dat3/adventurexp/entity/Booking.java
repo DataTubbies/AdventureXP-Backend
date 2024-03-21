@@ -20,19 +20,11 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    //@Column(columnDefinition = "VARCHAR(255)")
+    //@Column(columnDefinition = "VARC
+    // HAR(255)")
     private UUID id;
 
-    @Column(nullable =true)
-    String companyName;
-    String customerFirstName;
-    String customerLastName;
-    String streetName;
-    String streetNumber;
-    int zipCode;
-    String city;
-    int phoneNumber;
-    int bookingNumber;
+    private int bookingNumber;
 
     @ManyToOne
     @JoinColumn(name = "activity_id", referencedColumnName = "id")
