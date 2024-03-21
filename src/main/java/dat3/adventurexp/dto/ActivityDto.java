@@ -39,6 +39,7 @@ public class ActivityDto {
         this.isActive =a.isActive();
         this.cancelLimit =a.getCancelLimit();
         this.timeSpan =a.getTimeSpan();
+        this.description = a.getDescription();
         if(includeAll){
             this.created = a.getCreated();
             this.edited = a.getEdited();

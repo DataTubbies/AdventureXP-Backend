@@ -27,8 +27,8 @@ public class Booking {
     private int bookingNumber;
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "id")
-    Activity activity;
+    @JoinColumn(name = "activityEvent_id", referencedColumnName = "id")
+    ActivityEvent activityEvent;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
