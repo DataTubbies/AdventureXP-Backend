@@ -20,8 +20,6 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    //@Column(columnDefinition = "VARC
-    // HAR(255)")
     private UUID id;
 
     private int bookingNumber;

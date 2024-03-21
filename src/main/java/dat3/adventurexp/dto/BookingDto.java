@@ -2,14 +2,13 @@ package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.adventurexp.entity.Booking;
+import dat3.adventurexp.entity.Customer;
 import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import dat3.adventurexp.entity.Customer;
-import dat3.adventurexp.entity.Activity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,17 +20,12 @@ import java.util.UUID;
 public class BookingDto {
 
     private UUID id;
-    private UUID activityId;
-
+    private UUID activityEventId;
     private UUID customerId;
-
 
     int bookingNumber;
 
-    Activity activity;
-
     Customer customer;
-
 
     @CreationTimestamp
     private LocalDateTime created;
@@ -41,10 +35,10 @@ public class BookingDto {
 
 public BookingDto(Booking b, boolean includeAll) {
     this.id = b.getId();
-    this.activity = b.getActivity();
-    this.customer = b.getCustomer();
-    this.activityId = b.getActivity().getId();
     this.customerId =b.getCustomer().getId();
+    this.activityEventId =b.getActivityEvent().getId();
+    this.customer=b.getCustomer();
+
 
     if(includeAll){
         this.created = b.getCreated();

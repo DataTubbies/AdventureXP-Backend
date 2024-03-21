@@ -5,10 +5,12 @@ import dat3.adventurexp.entity.Booking;
 import dat3.adventurexp.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,13 +38,17 @@ public class BookingController {
 
     }
     @GetMapping("/bookings/customer")
-    public ResponseEntity<List<BookingDto>> getBookingsByCustomerId(Authentication authentication) {
+    public Object getBookingsByCustomerId(Authentication authentication) {
 
-        String username = authentication.getName();
+        Object credentials = authentication.getCredentials();
+        System.out.println(credentials.toString());
         List<BookingDto> bookings = bookingService.getBookingsByUser(username);
-        return new ResponseEntity<>(bookings, HttpStatus.OK);
+        //return new ResponseEntity<String>("works", HttpStatus.OK);
+        UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
+        return bookingService.getBookingsByCustomerId(userId);
     }
 
+    // Failed to convert value of type 'java.lang.String' to required type 'java.util.UUID'; Invalid UUID string: customer
 
     @GetMapping(path = "/{id}")
     public BookingDto getBookingById(@PathVariable UUID id) {

@@ -44,7 +44,7 @@ public class Customer {
 
    @OneToMany(mappedBy = "customer")
    @JsonBackReference
-   private Set<Booking> booking = new HashSet<>();
+   private Set<Booking> bookings = new HashSet<>();
 
     private LocalDateTime created;
     private LocalDateTime edited;

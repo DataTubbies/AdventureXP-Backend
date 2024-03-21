@@ -43,7 +43,7 @@ public class Activity {
 
     @OneToMany(mappedBy = "activity")
     @JsonBackReference
-    private Set<Booking> booking = new HashSet<>();
+    private Set<ActivityEvent> activityEvents = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime created;

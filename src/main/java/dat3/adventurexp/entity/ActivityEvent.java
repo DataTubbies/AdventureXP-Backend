@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.awt.print.Book;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -24,15 +26,21 @@ public class ActivityEvent {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "id")
+    @JoinColumn(name = "activityId", referencedColumnName = "id")
     private Activity activity;
 
-    @OneToMany(mappedBy = "activity_event")
+    @OneToMany(mappedBy = "activityEvent")
     private Set<Booking> bookings = new HashSet<>();
 
-    String timeStart;
+    private LocalDateTime startTime;
 
-    int capacity;
-    int availableSpots;
+    private int capacity;
+    private int availableSpots;
+
+    public ActivityEvent(String startTime, int capacity, int availableSpots) {
+        this.startTime = LocalDateTime.parse(startTime);
+        this.capacity = capacity;
+        this.availableSpots = availableSpots;
+    }
 
 }
