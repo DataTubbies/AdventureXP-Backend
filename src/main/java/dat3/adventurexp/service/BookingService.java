@@ -43,7 +43,6 @@ public class BookingService {
     private void updateBooking(Booking original, BookingDto r) {
         original.setCustomer(r.getCustomer());
         original.setBookingNumber(r.getBookingNumber());
-        original.setActivity(r.getActivity());
     }
 
     public BookingDto addBooking(BookingDto bookingDto) {
