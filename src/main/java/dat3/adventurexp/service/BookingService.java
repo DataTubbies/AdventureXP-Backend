@@ -2,12 +2,13 @@ package dat3.adventurexp.service;
 
 import dat3.adventurexp.dto.BookingDto;
 import dat3.adventurexp.entity.Booking;
+import dat3.adventurexp.repository.ActivityEventRepository;
 import dat3.adventurexp.repository.BookingRepository;
+import dat3.adventurexp.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,8 +18,17 @@ public class BookingService {
 
     private BookingRepository bookingRepository;
 
-    public BookingService(BookingRepository bookingRepository) {
-        this.bookingRepository = bookingRepository;
+    private BookingNumberService bookingNumberService;
+
+    private CustomerRepository customerRepository;
+
+    private ActivityEventRepository activityEventRepository;
+
+        public BookingService(BookingRepository bookingRepository, BookingNumberService bookingNumberService, CustomerRepository customerRepository, ActivityEventRepository activityEventRepository) {
+            this.bookingRepository = bookingRepository;
+            this.customerRepository = customerRepository;
+            this.activityEventRepository = activityEventRepository;
+            this.bookingNumberService = bookingNumberService;
     }
 
     public List<BookingDto> getAllBookings() {
@@ -41,13 +51,16 @@ public class BookingService {
 
 
     private void updateBooking(Booking original, BookingDto r) {
+            original.setCustomer(customerRepository.findById(r.getCustomerId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found")));
         original.setCustomer(r.getCustomer());
-        original.setBookingNumber(r.getBookingNumber());
+        original.setActivityEvent(activityEventRepository.findById(r.getActivityEventId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity event not found")));
+        original.setParticipants(r.getParticipants());
     }
 
     public BookingDto addBooking(BookingDto bookingDto) {
         Booking booking = new Booking();
         updateBooking(booking, bookingDto);
+        booking.setBookingNumber(bookingNumberService.generateBookingNumber());
         bookingRepository.save(booking);
         return new BookingDto(booking, false);
     }
@@ -56,4 +69,5 @@ public class BookingService {
         // Call the repository method to fetch bookings by customer ID
         return bookingRepository.findByCustomerId(customerId);
     }
+
 }

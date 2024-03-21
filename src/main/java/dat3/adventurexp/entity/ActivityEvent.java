@@ -26,7 +26,7 @@ public class ActivityEvent {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "activityId", referencedColumnName = "id")
+    @JoinColumn(name = "activity_id", referencedColumnName = "id")
     private Activity activity;
 
     @OneToMany(mappedBy = "activityEvent")

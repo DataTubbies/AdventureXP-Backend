@@ -22,19 +22,30 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
     private int bookingNumber;
 
     @ManyToOne
-    @JoinColumn(name = "activityEvent_id", referencedColumnName = "id")
+    @JoinColumn(name = "activity_event_id", referencedColumnName = "id")
     ActivityEvent activityEvent;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     Customer customer;
 
+    private byte participants;
+
     @CreationTimestamp
     private LocalDateTime created;
 
     @UpdateTimestamp
     private LocalDateTime edited;
+
+     public Booking (UUID id, int bookingNumber, ActivityEvent activityEvent, Customer customer, byte participants) {
+        this.id = id;
+        this.bookingNumber = bookingNumber;
+        this.activityEvent = activityEvent;
+        this.customer = customer;
+        this.participants = participants;
+    }
 }

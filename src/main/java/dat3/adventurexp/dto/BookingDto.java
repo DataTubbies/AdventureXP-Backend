@@ -1,6 +1,7 @@
 package dat3.adventurexp.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import dat3.adventurexp.entity.ActivityEvent;
 import dat3.adventurexp.entity.Booking;
 import dat3.adventurexp.entity.Customer;
 import jakarta.persistence.Column;
@@ -27,23 +28,29 @@ public class BookingDto {
 
     Customer customer;
 
+    ActivityEvent activityEvent;
+
+    byte participants;
+
     @CreationTimestamp
     private LocalDateTime created;
 
     @UpdateTimestamp
     private LocalDateTime edited;
 
-public BookingDto(Booking b, boolean includeAll) {
-    this.id = b.getId();
-    this.customerId =b.getCustomer().getId();
-    this.activityEventId =b.getActivityEvent().getId();
-    this.customer=b.getCustomer();
-
-
-    if(includeAll){
-        this.created = b.getCreated();
-        this.edited = b.getEdited();
+    public BookingDto(Booking b, boolean includeAll) {
+        this.id = b.getId();
+        this.activityEvent = b.getActivityEvent();
+        this.activityEventId = b.getActivityEvent().getId();
+        this.customer = b.getCustomer();
+        this.customerId = b.getCustomer().getId();
+        this.participants = b.getParticipants();
         this.bookingNumber = b.getBookingNumber();
+
+        if (includeAll) {
+            this.created = b.getCreated();
+            this.edited = b.getEdited();
         }
     }
+
 }

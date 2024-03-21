@@ -22,10 +22,14 @@ public class ActivityEventController {
     @GetMapping
     public List<ActivityEventDto> getAllActivityEvents() {return activityEventService.getAllActivityEvents();}
 
+<<<<<<< Updated upstream
     @PostMapping
     public ActivityEventDto createActivityEvent(@RequestBody ActivityEventDto requestBody) {
         return activityEventService.addActivityEvent(requestBody);
     }
+=======
+
+>>>>>>> Stashed changes
     //@GetMapping(path="/{id}")
     //public ActivityEventDto getActivityEventByActivityId(@PathVariable UUID id) {return activityEventService.getActivityEventById(id);}
 }
