@@ -8,6 +8,7 @@ import dat3.adventurexp.entity.ActivityEvent;
 import dat3.adventurexp.repository.ActivityEventRepository;
 import dat3.adventurexp.repository.ActivityRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -54,5 +55,10 @@ public class ActivityEventService {
         original.setCapacity(r.getCapacity());
         original.setAvailableSpots(r.getAvailableSpots());
         original.setBookings(r.getBookings());
+    }
+
+    public ResponseEntity deleteActivityEvent(UUID id) {
+        activityEventRepository.deleteById(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
