@@ -40,9 +40,7 @@ public class BookingDto {
 
     public BookingDto(Booking b, boolean includeAll) {
         this.id = b.getId();
-        this.activityEvent = b.getActivityEvent();
         this.activityEventId = b.getActivityEvent().getId();
-        this.customer = b.getCustomer();
         this.customerId = b.getCustomer().getId();
         this.participants = b.getParticipants();
         this.bookingNumber = b.getBookingNumber();

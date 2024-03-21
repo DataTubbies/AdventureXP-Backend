@@ -50,7 +50,7 @@ public class BookingService {
     }
 
 
-    private void updateBooking(Booking original, BookingDto r) {
+    private void updateBooking(Booking original, BookingDto r){
             original.setCustomer(customerRepository.findById(r.getCustomerId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found")));
         original.setCustomer(r.getCustomer());
         original.setActivityEvent(activityEventRepository.findById(r.getActivityEventId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity event not found")));

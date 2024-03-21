@@ -8,11 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<<<<<<< Updated upstream
-=======
-import java.time.LocalDate;
->>>>>>> Stashed changes
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,23 +23,13 @@ public class ActivityEventDto {
     private int capacity;
     private int availableSpots;
     private String startTime;
-    private int capacity;
-    private int availableSpots;
 
     public ActivityEventDto(ActivityEvent ae, boolean includeAll) {
         this.id = ae.getId();
-<<<<<<< Updated upstream
         this.activityId = ae.getActivity().getId();
         this.bookings = ae.getBookings();
         this.startTime = ae.getStartTime().toString();
         this.capacity= ae.getCapacity();
         this.availableSpots=ae.getAvailableSpots();
-=======
-        this.activityId = getActivityId();
-        this.bookings = ae.getBookings();
-        this.capacity = ae.getCapacity();
-        this.availableSpots = ae.getAvailableSpots();
-        this.startTime = ae.getStartTime().toString();
->>>>>>> Stashed changes
     }
 }

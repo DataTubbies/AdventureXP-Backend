@@ -41,8 +41,7 @@ public class Booking {
     @UpdateTimestamp
     private LocalDateTime edited;
 
-     public Booking (UUID id, int bookingNumber, ActivityEvent activityEvent, Customer customer, byte participants) {
-        this.id = id;
+     public Booking (int bookingNumber, ActivityEvent activityEvent, Customer customer, byte participants) {
         this.bookingNumber = bookingNumber;
         this.activityEvent = activityEvent;
         this.customer = customer;
