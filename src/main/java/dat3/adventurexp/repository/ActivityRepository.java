@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface ActivityRepository extends JpaRepository <Activity, UUID> {
     Optional<Activity> findByName(String Name);
+
 }

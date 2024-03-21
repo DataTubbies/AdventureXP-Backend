@@ -40,9 +40,9 @@ public class BookingController {
     @GetMapping("/bookings/customer")
     public Object getBookingsByCustomerId(Authentication authentication) {
 
-        Object credentials = authentication.getCredentials();
-        System.out.println(credentials.toString());
-        List<BookingDto> bookings = bookingService.getBookingsByUser(username);
+        //Object credentials = authentication.getCredentials();
+        //System.out.println(credentials.toString());
+        //List<BookingDto> bookings = bookingService.getBookingsByUser(username);
         //return new ResponseEntity<String>("works", HttpStatus.OK);
         UUID userId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
         return bookingService.getBookingsByCustomerId(userId);

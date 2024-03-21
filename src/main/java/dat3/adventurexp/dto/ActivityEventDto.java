@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,11 +22,15 @@ public class ActivityEventDto {
     private UUID activityId;
     private Set<Booking> bookings;
     private String startTime;
+    private int capacity;
+    private int availableSpots;
 
     public ActivityEventDto(ActivityEvent ae, boolean includeAll) {
-        this.id = id;
-        this.activityId = activityId;
-        this.bookings = bookings;
-        this.startTime = startTime;
+        this.id = ae.getId();
+        this.activityId = ae.getActivity().getId();
+        this.bookings = ae.getBookings();
+        this.startTime = ae.getStartTime().toString();
+        this.capacity= ae.getCapacity();
+        this.availableSpots=ae.getAvailableSpots();
     }
 }
