@@ -36,6 +36,7 @@ public class Booking {
     @JsonIgnoreProperties("bookings")
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JsonBackReference
     Customer customer;
 
     private byte participants;

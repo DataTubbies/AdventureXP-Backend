@@ -31,6 +31,11 @@ public class ActivityEventController {
         return activityEventService.getActivityEventById(id);
     }
 
+    @GetMapping("/activity/{id}")
+    public List<ActivityEventDto> getAllActivityEventsByActivityId(@PathVariable UUID id) {
+        return activityEventService.getActivityEventsByActivityId(id);
+    }
+
     @PostMapping
     public ActivityEventDto createActivityEvent(@RequestBody ActivityEventDto requestBody) {
         return activityEventService.addActivityEvent(requestBody);

@@ -35,7 +35,7 @@ public class ActivityEventService {
         return activityEvents.stream().map(ae -> new ActivityEventDto(ae, false)).collect(Collectors.toList());
     }
 
-    public List <ActivityEventDto> getActivityEventByActivityId(UUID id) {
+    public List<ActivityEventDto> getActivityEventsByActivityId(UUID id) {
         List<ActivityEvent> activityEvents = activityEventRepository.findByActivityId(id);
         return activityEvents.stream().map(ae -> new ActivityEventDto(ae, false)).collect(Collectors.toList());
     }
@@ -57,7 +57,7 @@ public class ActivityEventService {
     }
 
     private void updateActivityEvent(ActivityEvent original, ActivityEventDto r) {
-        original.setActivity(activityRepository.findById(r.getActivityId( )).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found")));
+        original.setActivity(activityRepository.findById(r.getActivityId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found")));
         original.setStartTime(LocalDateTime.parse(r.getStartTime()));
         original.setCapacity(r.getCapacity());
         original.setAvailableSpots(r.getAvailableSpots());
@@ -72,7 +72,7 @@ public class ActivityEventService {
     }
 
     public void calculateAvailableSpots(ActivityEvent activityEvent) {
-        if (activityEvent.getBookings()==null) {
+        if (activityEvent.getBookings() == null) {
             return;
         }
 
@@ -83,4 +83,5 @@ public class ActivityEventService {
         activityEvent.setAvailableSpots(availableSpots);
         activityEventRepository.save(activityEvent);
     }
+
 }

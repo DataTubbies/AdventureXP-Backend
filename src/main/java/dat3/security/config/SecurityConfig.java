@@ -55,13 +55,14 @@ public class SecurityConfig {
             // Get
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activities")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activities/*")).permitAll()
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activityevents")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/bookings/*")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers/*")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/customers")).hasAuthority("ADMIN")
-            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activityevents/")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activityevents")).permitAll()
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activityevents/*")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/activityevents/activity/*")).permitAll()
+
 
 
 
