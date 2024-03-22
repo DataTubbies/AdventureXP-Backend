@@ -10,5 +10,6 @@ import java.util.UUID;
 public interface ActivityEventRepository extends JpaRepository<ActivityEvent, UUID>{
     List<ActivityEvent> findByActivityId(UUID id);
 
+
 }
 

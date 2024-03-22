@@ -39,6 +39,12 @@ public class ActivityEventService {
         return activityEvents.stream().map(ae -> new ActivityEventDto(ae, false)).collect(Collectors.toList());
     }
 
+
+    public ActivityEventDto getActivityEventById(UUID id) {
+        return new ActivityEventDto(activityEventRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity event not found")), false);
+    }
+
     public ActivityEventDto addActivityEvent(ActivityEventDto request) {
         if (request.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new activity event");
