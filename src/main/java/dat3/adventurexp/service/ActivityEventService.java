@@ -5,6 +5,7 @@ import dat3.adventurexp.dto.ActivityDto;
 import dat3.adventurexp.dto.ActivityEventDto;
 import dat3.adventurexp.entity.Activity;
 import dat3.adventurexp.entity.ActivityEvent;
+import dat3.adventurexp.entity.Booking;
 import dat3.adventurexp.repository.ActivityEventRepository;
 import dat3.adventurexp.repository.ActivityRepository;
 import org.springframework.http.HttpStatus;
@@ -61,10 +62,25 @@ public class ActivityEventService {
         original.setCapacity(r.getCapacity());
         original.setAvailableSpots(r.getAvailableSpots());
         original.setBookings(r.getBookings());
+
+        calculateAvailableSpots(original);
     }
 
     public ResponseEntity deleteActivityEvent(UUID id) {
         activityEventRepository.deleteById(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    public void calculateAvailableSpots(ActivityEvent activityEvent) {
+        if (activityEvent.getBookings()==null) {
+            return;
+        }
+
+        int availableSpots = activityEvent.getCapacity();
+        for (Booking booking : activityEvent.getBookings()) {
+            availableSpots -= booking.getParticipants();
+        }
+        activityEvent.setAvailableSpots(availableSpots);
+        activityEventRepository.save(activityEvent);
     }
 }

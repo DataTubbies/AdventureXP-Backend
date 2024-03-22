@@ -1,6 +1,7 @@
 package dat3.adventurexp.service;
 
 import dat3.adventurexp.dto.BookingDto;
+import dat3.adventurexp.entity.ActivityEvent;
 import dat3.adventurexp.entity.Booking;
 import dat3.adventurexp.repository.ActivityEventRepository;
 import dat3.adventurexp.repository.BookingRepository;
@@ -24,11 +25,14 @@ public class BookingService {
 
     private ActivityEventRepository activityEventRepository;
 
-        public BookingService(BookingRepository bookingRepository, BookingNumberService bookingNumberService, CustomerRepository customerRepository, ActivityEventRepository activityEventRepository) {
+    private ActivityEventService activityEventService;
+
+        public BookingService(BookingRepository bookingRepository, BookingNumberService bookingNumberService, CustomerRepository customerRepository, ActivityEventRepository activityEventRepository, ActivityEventService activityEventService) {
             this.bookingRepository = bookingRepository;
             this.customerRepository = customerRepository;
             this.activityEventRepository = activityEventRepository;
             this.bookingNumberService = bookingNumberService;
+            this.activityEventService = activityEventService;
     }
 
     public List<BookingDto> getAllBookings() {
@@ -60,6 +64,12 @@ public class BookingService {
         Booking booking = new Booking();
         updateBooking(booking, bookingDto);
         booking.setBookingNumber(bookingNumberService.generateBookingNumber());
+
+        ActivityEvent activityEvent = activityEventRepository.findById(bookingDto.getActivityEventId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ActivityEvent not found"));
+
+        activityEventService.calculateAvailableSpots(activityEvent);
+
         bookingRepository.save(booking);
         return new BookingDto(booking, false);
     }

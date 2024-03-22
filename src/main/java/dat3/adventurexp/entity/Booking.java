@@ -1,6 +1,7 @@
 package dat3.adventurexp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Booking {
     @JsonIgnoreProperties("bookings")
     @ManyToOne
     @JoinColumn(name = "activity_event_id", referencedColumnName = "id")
+    @JsonBackReference
     ActivityEvent activityEvent;
 
     @JsonIgnoreProperties("bookings")
