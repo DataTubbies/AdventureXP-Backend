@@ -68,9 +68,15 @@ public class BookingService {
         ActivityEvent activityEvent = activityEventRepository.findById(bookingDto.getActivityEventId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ActivityEvent not found"));
 
+        activityEvent.getBookings().add(booking);
         activityEventService.calculateAvailableSpots(activityEvent);
 
+        if (activityEvent.getAvailableSpots() < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No available spots for this activity event");
+        }
+
         bookingRepository.save(booking);
+
         return new BookingDto(booking, false);
     }
 
