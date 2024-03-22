@@ -60,10 +60,8 @@ public class ActivityEventService {
         original.setActivity(activityRepository.findById(r.getActivityId( )).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found")));
         original.setStartTime(LocalDateTime.parse(r.getStartTime()));
         original.setCapacity(r.getCapacity());
-        original.setAvailableSpots(r.getAvailableSpots());
+        original.setAvailableSpots(r.getCapacity());
         original.setBookings(r.getBookings());
-
-        calculateAvailableSpots(original);
     }
 
     public ResponseEntity deleteActivityEvent(UUID id) {
@@ -80,6 +78,11 @@ public class ActivityEventService {
         for (Booking booking : activityEvent.getBookings()) {
             availableSpots -= booking.getParticipants();
         }
+
+        if (availableSpots < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough spots available");
+        }
+
         activityEvent.setAvailableSpots(availableSpots);
         activityEventRepository.save(activityEvent);
     }
