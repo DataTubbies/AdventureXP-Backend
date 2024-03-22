@@ -2,6 +2,7 @@ package dat3.adventurexp.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class ActivityEvent {
 
     @JsonIgnoreProperties("activityEvent")
     @OneToMany(mappedBy = "activityEvent")
+    @JsonManagedReference
     private Set<Booking> bookings = new HashSet<>();
 
     private LocalDateTime startTime;
