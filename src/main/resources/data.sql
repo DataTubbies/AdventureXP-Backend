@@ -1,11 +1,24 @@
--- CREATE DATABASE IF NOT EXISTS recipes;
 USE adventurexp;
 
---INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span)
---VALUES (UNHEX(REPLACE('a1b2c3d4-1234-5678-90ab-cdef12345678', '-', '')), 'Go Karting', 20.00, '<base64 encoded image data>', 'Experience the thrill of racing with our high-speed Go Karts!', 10, 10, 1, 24, 30);
+DELETE FROM adventurexp.activities;
+DELETE FROM adventurexp.customers;
+DELETE FROM adventurexp.activity_events;
+DELETE FROM adventurexp.bookings;
 
---INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span)
---VALUES (UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345679', '-', '')), 'Mini Golf', 15.00, '<base64 encoded image data>', 'Enjoy a fun-filled round of Mini Golf with family and friends!', 20, 5, 1, 12, 60);
+-- Insert activities
+INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span) VALUES (UNHEX(REPLACE('a1b2c3d4-1234-5678-90ab-cdef12345678', '-', '')), 'Go Karting', 200.00, '<base64 encoded image data>', 'Experience the thrill of racing with our high-speed Go Karts!', 10, 10, 1, 60, 30);
+INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span) VALUES (UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345679', '-', '')), 'Mini Golf', 100.00, '<base64 encoded image data>', 'Enjoy a fun-filled round of Mini Golf with family and friends!', 20, 5, 1, 120, 60);
+INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span) VALUES (UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345680', '-', '')), 'Sumo Wrestling', 150.00, '<base64 encoded image data>', 'Step into the ring and experience the excitement of Sumo Wrestling!', 8, 18, 1, 90, 45);
 
----INSERT INTO adventurexp.activities (id, name, price, base64image, description, capacity, age_limit, is_active, cancel_limit, time_span)
---VALUES (UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345680', '-', '')), 'Sumo Wrestling', 25.00, '<base64 encoded image data>', 'Step into the ring and experience the excitement of Sumo Wrestling!', 8, 18, 1, 48, 45);rst_name, last_name, email, street_name, street_number, zip_code, city, phone_number, username) VALUES (UUID(), 'Company ApS', 55555555, true, 'John', 'Doe', 'customer@lol.dk', 'Street', 1, 1234, 'City', 12345678, 'customer1');
+-- Insert activity events
+INSERT INTO adventurexp.activity_events (id, activity_id, start_time, available_spots, capacity) VALUES (UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), UNHEX(REPLACE('a1b2c3d4-1234-5678-90ab-cdef12345678', '-', '')), '2024-03-22 10:30:00', 10, 10);
+INSERT INTO adventurexp.activity_events (id, activity_id, start_time, available_spots, capacity) VALUES (UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345676', '-', '')), UNHEX(REPLACE('a1b2c3d4-1234-5678-90ab-cdef12345678', '-', '')), '2024-03-22 11:00:00', 10, 10);
+INSERT INTO adventurexp.activity_events (id, activity_id, start_time, available_spots, capacity) VALUES (UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345677', '-', '')), UNHEX(REPLACE('a1b2c3d4-1234-5678-90ab-cdef12345678', '-', '')), '2024-03-22 11:30:00', 10, 10);
+
+-- Insert customers
+INSERT INTO adventurexp.customers (id, company_name, cvr, is_company, first_name, last_name, email, street_name, street_number, zip_code, city, phone_number, username) VALUES (UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), 'MagnuTron ApS', 37930385, 1, 'Mads', 'Kristensen', 'mk@magnutron.dk', 'Tagensvej', '169 TH', 2400, 'KBH NV', 21278060, 'magnutron');
+
+-- Insert bookings
+INSERT INTO adventurexp.bookings (id, customer_id, activity_event_id, booking_number, participants) VALUES (UNHEX(REPLACE('d1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), 1, 4);
+INSERT INTO adventurexp.bookings (id, customer_id, activity_event_id, booking_number, participants) VALUES (UNHEX(REPLACE('d1b2c3d4-1234-5678-90ab-cdef12345676', '-', '')), UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345676', '-', '')), 2, 6);
+INSERT INTO adventurexp.bookings (id, customer_id, activity_event_id, booking_number, participants) VALUES (UNHEX(REPLACE('d1b2c3d4-1234-5678-90ab-cdef12345677', '-', '')), UNHEX(REPLACE('c1b2c3d4-1234-5678-90ab-cdef12345675', '-', '')), UNHEX(REPLACE('b1b2c3d4-1234-5678-90ab-cdef12345677', '-', '')), 3, 8);

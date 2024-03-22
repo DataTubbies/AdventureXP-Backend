@@ -18,7 +18,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "activity_event")
+@Table(name = "activity_events")
 public class ActivityEvent {
 
     @Id
