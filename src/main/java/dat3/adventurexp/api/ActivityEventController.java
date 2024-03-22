@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/activityevent")
+@RequestMapping("/activityevents")
 public class ActivityEventController {
 
     private ActivityEventService activityEventService;

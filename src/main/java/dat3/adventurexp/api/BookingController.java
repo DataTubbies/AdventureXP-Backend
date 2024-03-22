@@ -39,8 +39,8 @@ public class BookingController {
     }
 
     /*
-    @GetMapping("/bookings/customer/")
-    public List<BookingDto> getBookingsByCustomerId(Authentication authentication) {
+    @GetMapping("/bookings/customer")
+    public List<Booking> getBookingsByCustomerId(Authentication authentication) {
 
         Object credentials = authentication.getCredentials();
         //System.out.println(credentials.toString());
@@ -50,6 +50,7 @@ public class BookingController {
         return bookingService.getBookingsByCustomerId(userId);
     }
      */
+
 
     @GetMapping(path = "/{id}")
     public BookingDto getBookingById(@PathVariable UUID id) {

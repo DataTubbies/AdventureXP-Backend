@@ -1,6 +1,7 @@
 package dat3.adventurexp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,12 @@ public class Booking {
     @Column(nullable = false)
     private int bookingNumber;
 
+    @JsonIgnoreProperties("bookings")
     @ManyToOne
     @JoinColumn(name = "activity_event_id", referencedColumnName = "id")
     ActivityEvent activityEvent;
 
+    @JsonIgnoreProperties("bookings")
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     Customer customer;

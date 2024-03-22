@@ -26,10 +26,6 @@ public class BookingDto {
 
     int bookingNumber;
 
-    Customer customer;
-
-    ActivityEvent activityEvent;
-
     byte participants;
 
     @CreationTimestamp

@@ -64,9 +64,9 @@ public class BookingService {
         return new BookingDto(booking, false);
     }
 
-    public List<Booking> getBookingsByCustomerId(UUID customerId) {
+    //public List<Booking> getBookingsByCustomerId(UUID customerId) {
         // Call the repository method to fetch bookings by customer ID
-        return bookingRepository.findByCustomerId(customerId);
-    }
+        //return bookingRepository.findByCustomerId(customerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No activity events found"));
+    //'}
 
 }
