@@ -1,6 +1,7 @@
 package dat3.adventurexp.api;
 
 
+import dat3.adventurexp.dto.ActivityDto;
 import dat3.adventurexp.dto.ActivityEventDto;
 import dat3.adventurexp.entity.ActivityEvent;
 
@@ -23,6 +24,12 @@ public class ActivityEventController {
 
     @GetMapping
     public List<ActivityEventDto> getAllActivityEvents() {return activityEventService.getAllActivityEvents();}
+
+
+    @GetMapping(path = "/{id}")
+    public ActivityEventDto getActivityEventById(@PathVariable UUID id) {
+        return activityEventService.getActivityEventById(id);
+    }
 
     @PostMapping
     public ActivityEventDto createActivityEvent(@RequestBody ActivityEventDto requestBody) {
