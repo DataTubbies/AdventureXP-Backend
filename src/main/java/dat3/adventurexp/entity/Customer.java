@@ -27,7 +27,8 @@ public class Customer {
     @Column(nullable = true)
     private String companyName;
     @Column(nullable = true)
-    private int cvr;
+    private Integer cvr;
+
 
     private boolean isCompany;
    private String firstName ;
